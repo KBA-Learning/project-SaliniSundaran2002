@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen" style="background-image: url('/Images/DarkWallpaper.png');">
+    <header class="text-white p-4 flex items-center justify-between">
+        <div class="logo-home">
+            <img src="/Images/white-logo.png" alt="Logo" class="h-8 sm:h-10">
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="adminDashboard.html" class="hover:text-blue-300 text-sm sm:text-base">Dashboard</a>
+            <a href="adminManage.html" class="hover:text-blue-300 text-sm sm:text-base">View Employees</a>
+            <div class="relative group">
+                <button class="hover:text-blue-300 text-sm sm:text-base">Tasks</button>
+                <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded shadow-lg">
+                    <a href="admin-onTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Onboarding Tasks</a>
+                    <a href="admin-trainTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Training Tasks</a>
+                    <a href="track-progress.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Progress</a>
+                    <a href="admin-reports.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Reports</a>
+                    <a href="admin-notifications.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Notifications</a>
+                    
+                </div>
+            </div>
+            <a href="admin-settings.html" class="hover:text-blue-300 text-sm sm:text-base">Settings</a>
+            <!-- <a href="notification.html" class="hover:text-blue-300 text-sm sm:text-base">Notifications</a>
+            <a href="support.html" class="hover:text-blue-300 text-sm sm:text-base">Support</a> -->
+            <a href="Login.html" class="hover:text-blue-300 text-sm sm:text-base">Logout</a>
+        </nav>
+        <button id="menuButton" class="md:hidden text-white text-lg sm:text-xl">☰</button>
+    </header>
+
+    <nav id="mobileNavbar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <ul class="flex flex-col space-y-4 p-6 text-white text-sm">
+            <li><a href="adminDashboard.html" class="hover:text-blue-300">Dashboard</a></li>
+            <li><a href="adminManage.html" class="hover:text-blue-300">View Employees</a></li>
+            <li><a href="admin-onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+            <li><a href="admin-trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+            <li><a href="track-progress.html" class="hover:text-blue-300">Progress</a></li>
+            <li><a href="admin-reports.html" class="hover:text-blue-300">Reports</a></li>
+            <li><a href="admin-notifications.html" class="hover:text-blue-300">Notifications</a></li>
+            <li><a href="admin-settings.html" class="hover:text-blue-300">Settings</a></li>
+            <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container mx-auto p-6 flex-grow">
+        <h2 class="text-2xl font-bold mb-4">Manage Notifications</h2>
+
+        <!-- Create Notification Section -->
+        <div class="bg-white p-6 rounded shadow-md mb-6 text-gray-700">
+            <h3 class="text-lg font-semibold mb-4">Create New Notification</h3>
+            <form class="space-y-4">
+                <div>
+                    <label for="message" class="block text-sm font-medium">Notification Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter the notification message..." class="w-full p-2 border rounded"></textarea>
+                </div>
+                <div>
+                    <label for="notify-type" class="block text-sm font-medium">Notification Type:</label>
+                    <select id="notify-type" name="notify-type" class="w-full p-2 border rounded">
+                        <option value="general">General</option>
+                        <option value="onboarding">Onboarding</option>
+                        <option value="training">Training</option>
+                        <option value="reminder">Reminder</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date" class="block text-sm font-medium">Send Date:</label>
+                    <input type="date" id="date" name="date" class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="recipient" class="block text-sm font-medium">Send To:</label>
+                    <select id="recipient" name="recipient" class="w-full p-2 border rounded">
+                        <option value="all">All Employees</option>
+                        <option value="se">Software Engineer</option>
+                        <option value="ui">UI Designer</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                    Send Notification
+                </button>
+            </form>
+        </div>
+
+        <!-- View Sent Notifications Section -->
+        <div class="bg-white p-6 rounded shadow-md text-gray-700">
+            <h3 class="text-lg font-semibold mb-4">Sent Notifications</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-300">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 border-b">Message</th>
+                            <th class="px-4 py-2 border-b">Type</th>
+                            <th class="px-4 py-2 border-b">Recipient</th>
+                            <th class="px-4 py-2 border-b">Date Sent</th>
+                            <th class="px-4 py-2 border-b">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center border-b hover:bg-gray-100">
+                            <td class="px-4 py-2">Please complete your onboarding tasks!</td>
+                            <td class="px-4 py-2">Onboarding</td>
+                            <td class="px-4 py-2">Software Engineers</td>
+                            <td class="px-4 py-2">2024-10-10</td>
+                            <td><button
+                                class="bg-red-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded hover:bg-red-600">Remove</button></td>
+                        </tr>
+                        <tr class="text-center border-b hover:bg-gray-100">
+                            <td class="px-4 py-2">New training materials are available for review.</td>
+                            <td class="px-4 py-2">Training</td>
+                            <td class="px-4 py-2">All Employees</td>
+                            <td class="px-4 py-2">2024-10-09</td>
+                            <td> <button
+                                class="bg-red-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded hover:bg-red-600">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script for Mobile Navbar -->
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employees</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen" style="background-image: url('/Images/DarkWallpaper.png');">
+    <header class="text-white p-4 flex items-center justify-between">
+        <div class="logo-home">
+            <img src="/Images/white-logo.png" alt="Logo" class="h-8 sm:h-10">
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="adminDashboard.html" class="hover:text-blue-300 text-sm sm:text-base">Dashboard</a>
+            <a href="adminManage.html" class="hover:text-blue-300 text-sm sm:text-base">View Employees</a>
+            <div class="relative group">
+                <button class="hover:text-blue-300 text-sm sm:text-base">Tasks</button>
+                <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded shadow-lg">
+                    <a href="admin-onTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Onboarding Tasks</a>
+                    <a href="admin-trainTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Training Tasks</a>
+                    <a href="track-progress.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Progress</a>
+                    <a href="admin-reports.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Reports</a>
+                    <a href="admin-notifications.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Notifications</a>
+                    
+                </div>
+            </div>
+            <a href="admin-settings.html" class="hover:text-blue-300 text-sm sm:text-base">Settings</a>
+            <!-- <a href="notification.html" class="hover:text-blue-300 text-sm sm:text-base">Notifications</a>
+            <a href="support.html" class="hover:text-blue-300 text-sm sm:text-base">Support</a> -->
+            <a href="Login.html" class="hover:text-blue-300 text-sm sm:text-base">Logout</a>
+        </nav>
+        <button id="menuButton" class="md:hidden text-white text-lg sm:text-xl">☰</button>
+    </header>
+
+    <nav id="mobileNavbar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <ul class="flex flex-col space-y-4 p-6 text-white text-sm">
+            <li><a href="adminDashboard.html" class="hover:text-blue-300">Dashboard</a></li>
+            <li><a href="adminManage.html" class="hover:text-blue-300">View Employees</a></li>
+            <li><a href="admin-onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+            <li><a href="admin-trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+            <li><a href="track-progress.html" class="hover:text-blue-300">Progress</a></li>
+            <li><a href="admin-reports.html" class="hover:text-blue-300">Reports</a></li>
+            <li><a href="admin-notifications.html" class="hover:text-blue-300">Notifications</a></li>
+            <li><a href="admin-settings.html" class="hover:text-blue-300">Settings</a></li>
+            <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow container mx-auto p-6">
+        <h2 class="text-2xl font-semibold mb-4 text-white">View Employees</h2>
+
+        <!-- Employee List Table -->
+        <div class="bg-white p-6 rounded-lg shadow-md overflow-x-auto">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">Employees</h3>
+            <table class="w-full border border-gray-300 rounded-lg">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="p-3 text-left font-medium text-gray-600">Name</th>
+                        <th class="p-3 text-left font-medium text-gray-600">Email</th>
+                        <th class="p-3 text-left font-medium text-gray-600">Role</th>
+                        <th class="p-3 text-left font-medium text-gray-600">Joining Date</th>
+                        <th class="p-3 text-left font-medium text-gray-600">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-t border-gray-300">
+                        <td class="p-3 text-black">John Doe</td>
+                        <td class="p-3 text-black">john.doe@example.com</td>
+                        <td class="p-3 text-black">Software Engineer</td>
+                        <td class="p-3 text-black">01-02-2025</td>
+                        <td class="p-3 flex space-x-2">
+                            <a href="editAdmin.html" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Verify</a>
+                            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Remove</button>
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-300">
+                        <td class="p-3 text-black">Jane Smith</td>
+                        <td class="p-3 text-black">jane.smith@example.com</td>
+                        <td class="p-3 text-black">HR Manager</td>
+                        <td class="p-3 text-black">01-02-2025</td>
+                        <td class="p-3 flex space-x-2">
+                            <a href="editAdmin.html" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Verify</a>
+                            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script for Mobile Navbar -->
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

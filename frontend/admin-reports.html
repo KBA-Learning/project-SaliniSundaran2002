@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen" style="background-image: url('/Images/DarkWallpaper.png');">
+    <header class="text-white p-4 flex items-center justify-between">
+        <div class="logo-home">
+            <img src="/Images/white-logo.png" alt="Logo" class="h-8 sm:h-10">
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="adminDashboard.html" class="hover:text-blue-300 text-sm sm:text-base">Dashboard</a>
+            <a href="adminManage.html" class="hover:text-blue-300 text-sm sm:text-base">View Employees</a>
+            <div class="relative group">
+                <button class="hover:text-blue-300 text-sm sm:text-base">Tasks</button>
+                <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded shadow-lg">
+                    <a href="admin-onTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Onboarding Tasks</a>
+                    <a href="admin-trainTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Training Tasks</a>
+                    <a href="track-progress.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Progress</a>
+                    <a href="admin-reports.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Reports</a>
+                    <a href="admin-notifications.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Notifications</a>
+                    
+                </div>
+            </div>
+            <a href="admin-settings.html" class="hover:text-blue-300 text-sm sm:text-base">Settings</a>
+            <!-- <a href="notification.html" class="hover:text-blue-300 text-sm sm:text-base">Notifications</a>
+            <a href="support.html" class="hover:text-blue-300 text-sm sm:text-base">Support</a> -->
+            <a href="Login.html" class="hover:text-blue-300 text-sm sm:text-base">Logout</a>
+        </nav>
+        <button id="menuButton" class="md:hidden text-white text-lg sm:text-xl">☰</button>
+    </header>
+
+    <nav id="mobileNavbar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <ul class="flex flex-col space-y-4 p-6 text-white text-sm">
+            <li><a href="adminDashboard.html" class="hover:text-blue-300">Dashboard</a></li>
+            <li><a href="adminManage.html" class="hover:text-blue-300">View Employees</a></li>
+            <li><a href="admin-onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+            <li><a href="admin-trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+            <li><a href="track-progress.html" class="hover:text-blue-300">Progress</a></li>
+            <li><a href="admin-reports.html" class="hover:text-blue-300">Reports</a></li>
+            <li><a href="admin-notifications.html" class="hover:text-blue-300">Notifications</a></li>
+            <li><a href="admin-settings.html" class="hover:text-blue-300">Settings</a></li>
+            <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+        </ul>
+    </nav>
+
+        <!-- Container -->
+        <main class="container mx-auto p-6 flex-grow">
+            <h2 class="text-2xl font-bold mb-4">Generate Reports</h2>
+
+            <!-- Report Filters -->
+            <div class="report-filters bg-white p-4 rounded shadow-md mb-6">
+                <h3 class="text-lg font-semibold mb-4 text-black">Filter Reports</h3>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                        <div>
+                            <label for="employee" class="block text-sm font-medium text-gray-700 mb-2">Select Employee:</label>
+                            <select id="employee" name="employee" class="w-full p-2 border rounded text-gray-900 mb-2 bg-white">
+                                <option value="all">All Employees</option>
+                                <option value="john">John Doe</option>
+                                <option value="jane">Jane Smith</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="report-type" class="block text-sm font-medium text-gray-700 mb-2">Select Report Type:</label>
+                            <select id="report-type" name="report-type" class="w-full p-2 border rounded text-gray-900 mb-2 bg-white">
+                                <option value="onboarding">Onboarding Completion</option>
+                                <option value="training">Training Completion</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="start-date" class="block text-sm font-medium text-gray-700 mb-2">Select Start Date:</label>
+                            <input type="date" id="start-date" name="start-date" class="w-full p-2 mb-2 border rounded">
+                        </div>
+                        <div>
+                            <label for="end-date" class="block text-sm font-medium text-gray-700 mb-2">Select End Date:</label>
+                            <input type="date" id="end-date" name="end-date" class="w-full p-2 border rounded mb-2">
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                        Generate Report
+                    </button>
+                </form>
+            </div>
+
+            <!-- Generated Report -->
+            <div class="report-output bg-white p-4 rounded shadow-md">
+                <h3 class="text-lg font-semibold mb-4 text-black">Generated Report</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-300 text-gray-700">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 border-b">Employee Name</th>
+                                <th class="px-4 py-2 border-b">Report Type</th>
+                                <th class="px-4 py-2 border-b">Completion Status</th>
+                                <th class="px-4 py-2 border-b">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center border-b hover:bg-gray-100">
+                                <td class="px-4 py-2">John Doe</td>
+                                <td class="px-4 py-2">Onboarding</td>
+                                <td class="px-4 py-2">Completed</td>
+                                <td class="px-4 py-2">2024-09-30</td>
+                            </tr>
+                            <tr class="text-center border-b hover:bg-gray-100">
+                                <td class="px-4 py-2">Jane Smith</td>
+                                <td class="px-4 py-2">Training</td>
+                                <td class="px-4 py-2">In Progress</td>
+                                <td class="px-4 py-2">2024-09-28</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-8">
+            <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+                <div class="footer-section">
+                    <h3 class="font-bold">About Us</h3>
+                    <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+                </div>
+    
+                <div class="footer-section">
+                    <h3 class="font-bold">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                        <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                        <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                        <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3 class="font-bold">Contact Us</h3>
+                    <p>Email: onboard@orbit.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, TVM, INDIA</p>
+                </div>
+            </div>
+    
+            <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+                <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+            </div>
+        </footer>
+    
+        <!-- Script for Mobile Navbar -->
+        <script>
+            // Toggle the mobile navbar on button click
+            document.getElementById('menuButton').addEventListener('click', function () {
+                const mobileNavbar = document.getElementById('mobileNavbar');
+                mobileNavbar.classList.toggle('-translate-x-full');
+            });
+        </script>
+    </body>
+    
+    </html>
+    

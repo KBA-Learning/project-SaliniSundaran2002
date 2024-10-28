@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen"
+    style="background-image: url('/Images/DarkWallpaper.png');">
+    <div class="min-h-screen flex flex-col">
+        <header class="text-white p-4 flex items-center justify-between">
+            <div class="logo-home">
+                <img src="/Images/white-logo.png" alt="Logo" class="h-10">
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-blue-300">Home</a>
+                <a href="profile.html" class="hover:text-blue-300">My Profile</a>
+                <div class="relative group">
+                    <button class="hover:text-blue-300">Tasks</button>
+                    <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded">
+                        <a href="onTasks.html" class="block px-4 py-2 hover:bg-blue-600">Onboarding Tasks</a>
+                        <a href="trainTasks.html" class="block px-4 py-2 hover:bg-blue-600">Training Tasks</a>
+                        <a href="progress.html" class="block px-4 py-2 hover:bg-blue-600">Progress</a>
+                    </div>
+                </div>
+                <a href="resources.html" class="hover:text-blue-300">Resources</a>
+                <a href="notification.html" class="hover:text-blue-300">Notifications</a>
+                <a href="support.html" class="hover:text-blue-300">Support</a>
+                <a href="Login.html" class="hover:text-blue-300">Logout</a>
+            </nav>
+            <button id="menuButton" class="md:hidden text-white">☰</button>
+        </header>
+
+        <nav id="mobileNavbar"
+            class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+
+            <ul class="flex flex-col space-y-4 p-6 text-white">
+                <li><a href="index.html" class="hover:text-blue-300">Home</a></li>
+                <li><a href="profile.html" class="hover:text-blue-300">My Profile</a></li>
+                <li><a href="onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+                <li><a href="trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+                <li><a href="progress.html" class="hover:text-blue-300">Progress</a></li>
+                <li><a href="resources.html" class="hover:text-blue-300">Resources</a></li>
+                <li><a href="notification.html" class="hover:text-blue-300">Notifications</a></li>
+                <li><a href="support.html" class="hover:text-blue-300">Support</a></li>
+                <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+            </ul>
+        </nav>
+
+    <!-- Support Section -->
+    <main class="container mx-auto p-6">
+        <div class="support-container mb-8">
+            <h2 class="text-2xl font-bold mb-4">Support & Help</h2>
+            <p class="mb-6">If you need assistance or have any questions, please refer to the FAQs below or contact HR.</p>
+
+            <!-- FAQs Section -->
+            <div class="faq-section mb-8">
+                <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions (FAQs)</h3>
+
+                <!-- FAQ Items -->
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="bg-white shadow-md p-4 rounded-lg">
+                        <div class="font-medium">Q: How do I reset my password?</div>
+                        <p class="text-gray-700">A: You can reset your password by clicking on the "Forgot Password" link on the login page and following the instructions.</p>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="bg-white shadow-md p-4 rounded-lg">
+                        <div class="font-medium">Q: Who do I contact for technical issues?</div>
+                        <p class="text-gray-700">A: For technical issues, please contact IT support at <a href="mailto:onboard@orbit.com" class="text-blue-500 underline">onboard@orbit.com</a>.</p>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="bg-white shadow-md p-4 rounded-lg">
+                        <div class="font-medium">Q: Where can I find the employee handbook?</div>
+                        <p class="text-gray-700">A: The employee handbook can be found in the "Resources" section of the portal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact HR Section -->
+            <div class="contact-hr-section">
+                <h3 class="text-xl font-semibold mb-4">Contact HR</h3>
+                <form action="#" method="post" class="space-y-4">
+                    <div>
+                        <label for="name" class="block font-medium">Your Name:</label>
+                        <input type="text" id="name" name="name" required class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label for="email" class="block font-medium">Your Email:</label>
+                        <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label for="message" class="block font-medium">Your Message:</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+                    </div>
+                    <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

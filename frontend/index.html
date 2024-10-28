@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Onboard Orbit - Your journey starts here. Complete your onboarding and start training to become part of our dynamic team.">
+    <meta name="keywords" content="Onboard Orbit, onboarding, training, IT solutions">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+        /* Allow main content to grow and push footer to the bottom if there’s space */
+        main {
+            flex: 1;
+        }
+
+        /* Footer should have a top margin of 0 to avoid extra spacing */
+        footer {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen" style="background-image: url('/Images/DarkWallpaper.png');">
+    <div class="min-h-screen flex flex-col">
+        <header class="text-white p-4 flex items-center justify-between">
+            <div class="logo-home">
+                <img src="/Images/white-logo.png" alt="Logo" class="h-10">
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-blue-300">Home</a>
+                <a href="profile.html" class="hover:text-blue-300">My Profile</a>
+                <div class="relative group">
+                    <button class="hover:text-blue-300">Tasks</button>
+                    <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded">
+                        <a href="onTasks.html" class="block px-4 py-2 hover:bg-blue-600">Onboarding Tasks</a>
+                        <a href="trainTasks.html" class="block px-4 py-2 hover:bg-blue-600">Training Tasks</a>
+                        <a href="progress.html" class="block px-4 py-2 hover:bg-blue-600">Progress</a>
+                    </div>
+                </div>
+                <a href="resources.html" class="hover:text-blue-300">Resources</a>
+                <a href="notification.html" class="hover:text-blue-300">Notifications</a>
+                <a href="support.html" class="hover:text-blue-300">Support</a>
+                <a href="Login.html" class="hover:text-blue-300">Logout</a>
+            </nav>
+            <button id="menuButton" class="md:hidden text-white">☰</button>
+        </header>
+
+        <nav id="mobileNavbar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+
+            <ul class="flex flex-col space-y-4 p-6 text-white">
+                <li><a href="index.html" class="hover:text-blue-300">Home</a></li>
+                <li><a href="profile.html" class="hover:text-blue-300">My Profile</a></li>
+                <li><a href="onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+                <li><a href="trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+                <li><a href="progress.html" class="hover:text-blue-300">Progress</a></li>
+                <li><a href="resources.html" class="hover:text-blue-300">Resources</a></li>
+                <li><a href="notification.html" class="hover:text-blue-300">Notifications</a></li>
+                <li><a href="support.html" class="hover:text-blue-300">Support</a></li>
+                <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+            </ul>
+        </nav>
+
+    
+
+    <main>
+        <!-- Welcome Section -->
+        <div class="welcome-section text-center py-16 px-4">
+            <h1 class="text-3xl font-bold">Welcome to Onboard Orbit</h1>
+            <p class="mt-4 text-gray-300">Your journey starts here. Complete your onboarding and start training to become a part of our dynamic team.</p>
+        </div>
+
+        <!-- Company Overview Section -->
+        <div class="company-overview max-w-4xl mx-auto p-4">
+            <h2 class="text-2xl font-semibold mb-4">About Our Company</h2>
+            <p class="text-gray-300 mb-2">Onboard Orbit is a leader in IT, providing cutting-edge technology solutions to help businesses achieve success in the digital age. Our mission is to innovate and deliver top-tier solutions that empower our clients to thrive in a constantly evolving landscape.</p>
+            <p class="text-gray-300 mb-2">We believe in a culture of inclusion, innovation, and continuous learning, where every team member feels valued and has the opportunity to grow.</p>
+            <p class="text-gray-300 mb-2">We are committed to fostering an inclusive and supportive environment where everyone can thrive. As part of our team, you will contribute to a culture of:</p>
+            <ul class="list-disc list-inside text-gray-300 mb-4">
+                <li>Integrity: We are honest and transparent in all our interactions.</li>
+                <li>Collaboration: We work together across teams to achieve shared goals.</li>
+                <li>Innovation: We challenge the status quo and continuously seek new ideas to drive success.</li>
+                <li>Growth: We believe in nurturing talent, both individually and collectively.</li>
+                <li>Customer Focus: We prioritize our clients’ needs, ensuring we deliver exceptional value.</li>
+            </ul>
+            <p class="text-gray-200">At Onboard Orbit, we aim to shape the future of IT while creating a workplace where everyone can contribute to our shared success.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

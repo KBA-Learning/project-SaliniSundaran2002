@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen" style="background-image: url('/Images/DarkWallpaper.png');">
+    <div class="min-h-screen flex flex-col">
+        <header class="text-white p-4 flex items-center justify-between">
+            <div class="logo-home">
+                <img src="/Images/white-logo.png" alt="Logo" class="h-10">
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-blue-300">Home</a>
+                <a href="profile.html" class="hover:text-blue-300">My Profile</a>
+                <div class="relative group">
+                    <button class="hover:text-blue-300">Tasks</button>
+                    <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded">
+                        <a href="onTasks.html" class="block px-4 py-2 hover:bg-blue-600">Onboarding Tasks</a>
+                        <a href="trainTasks.html" class="block px-4 py-2 hover:bg-blue-600">Training Tasks</a>
+                        <a href="progress.html" class="block px-4 py-2 hover:bg-blue-600">Progress</a>
+                    </div>
+                </div>
+                <a href="resources.html" class="hover:text-blue-300">Resources</a>
+                <a href="notification.html" class="hover:text-blue-300">Notifications</a>
+                <a href="support.html" class="hover:text-blue-300">Support</a>
+                <a href="Login.html" class="hover:text-blue-300">Logout</a>
+            </nav>
+            <button id="menuButton" class="md:hidden text-white">☰</button>
+        </header>
+
+        <nav id="mobileNavbar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+
+            <ul class="flex flex-col space-y-4 p-6 text-white">
+                <li><a href="index.html" class="hover:text-blue-300">Home</a></li>
+                <li><a href="profile.html" class="hover:text-blue-300">My Profile</a></li>
+                <li><a href="onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+                <li><a href="trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+                <li><a href="progress.html" class="hover:text-blue-300">Progress</a></li>
+                <li><a href="resources.html" class="hover:text-blue-300">Resources</a></li>
+                <li><a href="notification.html" class="hover:text-blue-300">Notifications</a></li>
+                <li><a href="support.html" class="hover:text-blue-300">Support</a></li>
+                <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container mx-auto p-6 flex-grow">
+            <!-- Company Policies Section -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Company Policies</h2>
+                <p class="mb-4">Our company policies ensure a productive, respectful, and safe environment for all employees. Please review the most important policies below:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Code of Conduct:</strong> All employees must adhere to our code of conduct to maintain a respectful and collaborative work environment.</li>
+                    <li><strong>Anti-Harassment Policy:</strong> We maintain a zero-tolerance policy for any form of harassment or discrimination in the workplace.</li>
+                    <li><strong>Attendance Policy:</strong> Employees are expected to maintain regular attendance and communicate any absences ahead of time.</li>
+                    <li><strong>Workplace Safety:</strong> Safety is our top priority. All employees must adhere to the safety guidelines in the workplace.</li>
+                </ul>
+            </section>
+
+            <!-- Company Culture Section -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Our Company Culture</h2>
+                <p class="mb-4">We believe in fostering an inclusive and innovative environment. Here’s what defines our company culture:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Collaboration:</strong> We encourage teamwork and open communication between departments.</li>
+                    <li><strong>Continuous Learning:</strong> We promote constant development through training programs and upskilling opportunities.</li>
+                    <li><strong>Employee Well-being:</strong> We prioritize a healthy work-life balance with flexible working hours and wellness programs.</li>
+                    <li><strong>Innovation:</strong> Our team thrives on creativity and innovation, always looking for new ways to enhance processes.</li>
+                </ul>
+            </section>
+
+            <!-- Team Members Section -->
+            <section>
+                <h2 class="text-2xl font-bold mb-4">Meet Our Team</h2>
+                <p class="mb-4">Our team is made up of dedicated professionals who are passionate about our company’s mission. Below are some of our key team members:</p>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <img src="/Images/john.jpeg" alt="John" class="w-32 h-32 mx-auto rounded-full mb-4">
+                        <h3 class="font-bold text-lg">John Doe</h3>
+                        <p class="text-gray-700">CEO - John is the visionary behind the company, ensuring all departments are aligned with the company’s goals.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <img src="/Images/joy.jpeg" alt="Jane Smith" class="w-32 h-32 mx-auto rounded-full mb-4">
+                        <h3 class="font-bold text-lg">Jane Smith</h3>
+                        <p class="text-gray-700">HR Manager - Jane leads employee relations and ensures all HR processes are smooth and efficient.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <img src="/Images/emily.jpeg" alt="Emily Jones" class="w-32 h-32 mx-auto rounded-full mb-4">
+                        <h3 class="font-bold text-lg">Emily Jones</h3>
+                        <p class="text-gray-700">Head of Operations - Emily oversees all daily operations and ensures the company runs smoothly.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <img src="/Images/lilly.jpeg" alt="Lilly Brown" class="w-32 h-32 mx-auto rounded-full mb-4">
+                        <h3 class="font-bold text-lg">Lilly Brown</h3>
+                        <p class="text-gray-700">Marketing Director - Lilly leads the company’s marketing efforts and strategies to attract new clients.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

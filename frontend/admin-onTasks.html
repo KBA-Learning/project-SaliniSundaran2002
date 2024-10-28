@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat text-white flex flex-col min-h-screen"
+    style="background-image: url('/Images/DarkWallpaper.png');">
+    <header class="text-white p-4 flex items-center justify-between lg:justify-start lg:space-x-10">
+        <div class="logo-home">
+            <img src="/Images/white-logo.png" alt="Logo" class="h-8 sm:h-10">
+        </div>
+        <nav class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="adminDashboard.html" class="hover:text-blue-300 text-sm sm:text-base lg:text-lg">Dashboard</a>
+            <a href="adminManage.html" class="hover:text-blue-300 text-sm sm:text-base lg:text-lg">View Employees</a>
+            <div class="relative group">
+                <button class="hover:text-blue-300 text-sm sm:text-base lg:text-lg">Tasks</button>
+                <div class="absolute hidden group-hover:block bg-gray-700 mt-2 rounded shadow-lg">
+                    <a href="admin-onTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Onboarding Tasks</a>
+                    <a href="admin-trainTasks.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Training Tasks</a>
+                    <a href="track-progress.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Progress</a>
+                    <a href="admin-reports.html" class="block px-4 py-2 hover:bg-blue-600 text-sm">Reports</a>
+                    <a href="admin-notifications.html"
+                        class="block px-4 py-2 hover:bg-blue-600 text-sm">Notifications</a>
+                </div>
+            </div>
+            <a href="admin-settings.html" class="hover:text-blue-300 text-sm sm:text-base lg:text-lg">Settings</a>
+            <a href="Login.html" class="hover:text-blue-300 text-sm sm:text-base lg:text-lg">Logout</a>
+        </nav>
+        <button id="menuButton" class="md:hidden text-white text-lg sm:text-xl">☰</button>
+    </header>
+
+    <nav id="mobileNavbar"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <ul class="flex flex-col space-y-4 p-6 text-white text-sm lg:text-base">
+            <li><a href="adminDashboard.html" class="hover:text-blue-300">Dashboard</a></li>
+            <li><a href="adminManage.html" class="hover:text-blue-300">View Employees</a></li>
+            <li><a href="admin-onTasks.html" class="hover:text-blue-300">Onboarding Tasks</a></li>
+            <li><a href="admin-trainTasks.html" class="hover:text-blue-300">Training Tasks</a></li>
+            <li><a href="track-progress.html" class="hover:text-blue-300">Progress</a></li>
+            <li><a href="admin-reports.html" class="hover:text-blue-300">Reports</a></li>
+            <li><a href="admin-notifications.html" class="hover:text-blue-300">Notifications</a></li>
+            <li><a href="admin-settings.html" class="hover:text-blue-300">Settings</a></li>
+            <li><a href="Login.html" class="hover:text-blue-300">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mx-auto p-6 lg:px-10 lg:py-8 flex flex-col md:flex-row md:space-x-4 lg:space-x-6">
+        <div class="bg-white p-6 lg:p-8 rounded-lg shadow-md w-full md:w-1/2 mb-6 md:mb-0">
+            <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-gray-900">Add New Onboarding Task</h3>
+            <form>
+                <label for="task-name" class="block mb-2 text-gray-700 lg:text-lg">Task Name:</label>
+                <input type="text" id="task-name" name="task-name" class="w-full p-2 lg:p-3 mb-4 border rounded"
+                    required>
+
+                <label for="task-desc" class="block mb-2 text-gray-700 lg:text-lg">Task Description:</label>
+                <textarea id="task-desc" name="task-desc" class="w-full p-2 lg:p-3 mb-4 border rounded"
+                    required></textarea>
+                <label for="module-file" class="block mb-2 text-gray-700 lg:text-lg">Upload File (Video/PDF):</label>
+                <input type="file" id="module-file" name="module-file" class="w-full p-2 lg:p-3 mb-4 border rounded"
+                    required>
+                    <label for="assigned-roles" class="block mb-2 text-gray-700">Assign Employee Roles:</label>
+                    <select id="assigned-roles" name="assigned-roles"
+                        class="w-full p-3 rounded bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 border border-gray-300 mb-4"
+                        required>
+                        <option value="" disabled selected>Select a Role</option>
+                        <option value="ux-ui-designer">All</option>
+                        <option value="ux-ui-designer">UX/UI Designer</option>
+                        <option value="frontend-developer">Frontend Developer</option>
+                       
+                    </select>
+
+                <label for="due-date" class="block mb-2 text-gray-700 lg:text-lg">Due Date:</label>
+                <input type="date" id="due-date" name="due-date" class="w-full p-2 lg:p-3 mb-4 border rounded" required>
+
+                <button type="submit"
+                    class="bg-blue-500 text-white px-4 lg:px-6 py-2 lg:py-3 rounded hover:bg-blue-600">Add Task</button>
+            </form>
+        </div>
+
+        <div class="bg-white p-6 lg:p-8 rounded-lg shadow-md w-full md:w-1/2">
+            <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-gray-900">Onboarding Tasks List</h3>
+            <div class="overflow-x-auto"> <!-- Added wrapper for horizontal scrolling -->
+                <table class="min-w-full border border-gray-300 rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Task Name</th>
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Description</th>
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">File</th>
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Assigned Employees Roles</th>
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Due Date</th>
+                            <!-- <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Status</th> -->
+                            <th class="p-3 lg:p-4 text-left font-medium text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-300">
+                            <td class="p-3 lg:p-4 text-gray-700">Complete HR Paperwork</td>
+                            <td class="p-3 lg:p-4 text-gray-700">Fill and submit HR documents</td>
+                            <td class="p-3"><a href="#" class="text-blue-400 hover:underline">View Course</a></td>
+                            <td class="p-3 lg:p-4 text-gray-700">All</td>
+                            <td class="p-3 lg:p-4 text-gray-700">2024-10-15</td>
+                            <!-- <td class="p-3 lg:p-4 text-gray-700">Pending</td> -->
+                            <td class="p-3 lg:p-4 flex space-x-2">
+                                <a href="editTasks.html"
+                                    class="bg-blue-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded hover:bg-blue-600">Edit</a>
+                                <button
+                                    class="bg-red-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded hover:bg-red-600">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="footer-container max-w-4xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="footer-section">
+                <h3 class="font-bold">About Us</h3>
+                <p>We provide the best services for our clients. Our mission is to deliver high-quality products.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-sky-400 hover:underline">Home</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Services</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-sky-400 hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="font-bold">Contact Us</h3>
+                <p>Email: onboard@orbit.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Street, TVM, INDIA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center p-2 bg-gray-700 text-xs sm:text-sm">
+            <p>&copy; 2024 Onboard Orbit. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script for Mobile Navbar -->
+    <script>
+        // Toggle the mobile navbar on button click
+        document.getElementById('menuButton').addEventListener('click', function () {
+            const mobileNavbar = document.getElementById('mobileNavbar');
+            mobileNavbar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

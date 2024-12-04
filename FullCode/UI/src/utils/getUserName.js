@@ -1,23 +1,28 @@
 const logUserName = async () => {
-    try {
-        const resp = await fetch('/api/userName', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        });
 
-        if (!resp.ok) {
-            throw new Error(`Error: ${resp.status} ${resp.statusText}`);
+        try {
+            const response = await fetch('/api/userName', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+            console.log("Fetched user info:", data);
+    
+            // Extract and return first name and last name
+            const { firstname, lastname } = data;
+            return { firstname, lastname };
+            
+        } catch (error) {
+            console.error('Failed to fetch user info:', error);
+            throw error;
         }
+    };
+    
+   
 
-        const data = await resp.json();
-        console.log("fetched data:", data);
-        
-        return data.user;
-    } catch (error) {
-        console.error('Failed to fetch user role:', error);
-        return null;
-    }
-};
-
-
-export { logUserName }
+export { logUserName };

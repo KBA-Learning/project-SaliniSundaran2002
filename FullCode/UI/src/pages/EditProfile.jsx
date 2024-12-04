@@ -8,8 +8,6 @@ const EditProfile = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isEditing, setIsEditing] = useState({
-    firstname: false,
-    lastname: false,
     address: false,
     phoneNumber: false,
   });
@@ -52,37 +50,51 @@ const EditProfile = () => {
       return;
     }
 
+    // Phone number validation: check if it's a valid phone number
+    const phoneRegex = /^[0-9]{10}$/; // Only allow 10 digits
+    if (!phoneRegex.test(phoneNumber)) {
+      setError('Please enter a valid phone number with 10 digits.');
+      return;
+    }
+
     try {
-        const response = await fetch(`/api/updateUser/${email}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstname,
-                lastname,
-                address,
-                phoneNumber,
-            }),
-        });
+      const response = await fetch(`/api/updateUser/${email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          address,
+          phoneNumber,
+        }),
+      });
 
-        if (response.ok) {
-            const data = await response.json();
-            // Assuming the backend sends updated data
-            setSuccessMessage('Profile updated successfully!');
-            setError(null);
+      if (response.ok) {
+        const data = await response.json();
+        setSuccessMessage('Profile updated successfully!');
+        setError(null);
 
-            // Optionally update the state with the new values returned from the backend
-            setFirstname(data.updatedData.firstname);
-            setLastname(data.updatedData.lastname);
-            setAddress(data.updatedData.address);
-            setPhoneNumber(data.updatedData.phone);
-        } else {
-            throw new Error('Failed to update profile');
-        }
+        // Optionally update the state with the new values returned from the backend
+        setFirstname(data.updatedData.firstname);
+        setLastname(data.updatedData.lastname);
+        setAddress(data.updatedData.address);
+        setPhoneNumber(data.updatedData.phone);
+      } else {
+        throw new Error('Failed to update profile');
+      }
     } catch (error) {
-        console.error('Error updating profile:', error);
-        setError('An unexpected error occurred while saving profile updates.');
+      console.error('Error updating profile:', error);
+      setError('An unexpected error occurred while saving profile updates.');
+    }
+  };
+
+  // Handle phone number change to limit to 10 digits
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,10}$/.test(value)) {
+      setPhoneNumber(value);
     }
   };
 
@@ -156,7 +168,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={handlePhoneNumberChange} // Changed to handle phone number change
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
         ) : (

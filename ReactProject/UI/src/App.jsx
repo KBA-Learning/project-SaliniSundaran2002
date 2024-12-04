@@ -20,10 +20,11 @@ import UserSupport from "./pages/UserSupport";
 import ViewEmployee from "./pages/ViewEmployee"
 import EditProfile from "./pages/EditProfile";
 import AdminTrackProgress from "./pages/AdminTrackProgress";
+import MyProfile from "./pages/MyProfile";
 // import ViewCourse from "./pages/ViewCourse";
 
 const App = () => {
-  return (
+   return (
     <BrowserRouter>
       <Background />
       <Routes>
@@ -42,7 +43,8 @@ const App = () => {
 
         <Route element={<UserLayout />} >
           <Route path="/user-home" element={<UserDashboard />} />
-          <Route path="/profile" element={<EditProfile />} />
+          <Route path="/profile" element={<MyProfile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="user-onTasks" element={<UserOnboardTask />} />
           <Route path="user-trainTasks" element={<UserTrainingTask />} />
           <Route path="user-notification" element={<UserViewNotification />} />

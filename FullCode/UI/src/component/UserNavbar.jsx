@@ -23,7 +23,7 @@ const UserNavbar = () => {
             <div className="absolute hidden group-hover:block bg-gray-700 mt-2 rounded">
               <Link to="/user-onTasks" className="block px-4 py-2 hover:bg-blue-600">Onboarding Tasks</Link>
               <Link to="/user-trainTasks" className="block px-4 py-2 hover:bg-blue-600">Training Tasks</Link>
-              <Link to="/user-progress" className="block px-4 py-2 hover:bg-blue-600">Progress</Link>
+              {/* <Link to="/user-progress" className="block px-4 py-2 hover:bg-blue-600">Progress</Link> */}
             </div>
           </div>
           

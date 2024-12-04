@@ -132,7 +132,7 @@ const OnboardingTasks = () => {
       {message && <p className="text-center text-red-500">{message}</p>}
 
       {/* Add/Edit Task Form */}
-      <form className="mb-6" onSubmit={isEditing ? updateTask : addTask}>
+      <form className="mb-6 bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto" onSubmit={isEditing ? updateTask : addTask}>
         <div className="grid gap-4 mb-4">
           <input
             type="text"
@@ -201,14 +201,16 @@ const OnboardingTasks = () => {
       </form>
 
       {/* Display Tasks */}
+      <h2 className="text-2xl font-bold mt-10 mb-4 text-center text-white">Task List</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {tasks?.length > 0 ? (
           tasks.map((task) => (
             <div key={task.taskTitle} className="bg-white p-6 rounded shadow-md">
               <h3 className="text-xl font-bold">{task.taskTitle}</h3>
               <p>{task.taskDescription}</p>
-              <p>Start Date: {task.startDate}</p>
-              <p>End Date: {task.endDate}</p>
+              <p>Start Date: {new Date(task.startDate).toLocaleDateString()}</p>
+              <p>End Date: {new Date(task.endDate).toLocaleDateString()}</p>
+                   
               {task.taskPdf && (
                 <a
                   href={task.taskPdf}

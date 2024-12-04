@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactUs from '../component/ContactUs';
-import AboutUs from '../component/AboutUs';
+// import AboutUs from '../component/AboutUs';
 
 const AddSettings = () => {
   return (
@@ -9,7 +9,7 @@ const AddSettings = () => {
 
     <ContactUs />
 
-    <AboutUs />
+    {/* <AboutUs /> */}
   </main>
   )
 }

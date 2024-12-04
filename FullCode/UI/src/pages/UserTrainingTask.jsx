@@ -1,87 +1,98 @@
 import React, { useState, useEffect } from 'react';
-import { logUserRole } from '../utils/getUserRole'; // Import logUserRole function
 
 const UserTrainingTask = () => {
   const [tasks, setTasks] = useState([]);
   const [message, setMessage] = useState('');
-  const [userRole, setUserRole] = useState(''); // State to store user role
-
-  // Function to fetch training tasks based on the user role
-  const fetchTasks = async () => {
-    try {
-      const response = await fetch('/api/getTrainingTasks');
-      const result = await response.json();
-
-      if (response.ok) {
-        // Filter tasks by user role
-        const filteredTasks = result.tasks.filter(task => task.assignedRole === userRole);
-        setTasks(filteredTasks);
-      } else {
-        setMessage(result.message || 'Failed to fetch tasks.');
-      }
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-      setMessage('Error occurred while fetching tasks.');
-    }
-  };
-
-  // Fetch the user role when the component mounts
-  const fetchUserRole = async () => {
-    try {
-      const role = await logUserRole(); // Call the logUserRole function to get the user role
-      setUserRole(role); // Set the user role in state
-      console.log("userrole",role);
-      
-    } catch (error) {
-      console.error('Error fetching user role:', error);
-      setMessage('Failed to get user role.');
-    }
-  };
 
   useEffect(() => {
-    fetchUserRole(); // Fetch the user role when the component mounts
+    const fetchUserTrainingTasks = async () => {
+      try {
+        const response = await fetch('/api/getUserTraining', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'Application/json',
+          },
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setTasks(result.tasks);
+        } else {
+          setMessage(result.message || 'Error fetching tasks.');
+        }
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+        setMessage('Error occurred while fetching tasks.');
+      }
+    };
+
+    fetchUserTrainingTasks();
   }, []);
 
-  // Fetch tasks when the userRole is updated
-  useEffect(() => {
-    if (userRole) {
-      fetchTasks(); // Fetch tasks only if the user role is available
+  const calculateRemainingTime = (endDate) => {
+    const currentDate = new Date();
+    const end = new Date(endDate);
+    const timeDiff = end - currentDate;
+
+    if (timeDiff <= 0) {
+      return "Task expired";
     }
-  }, [userRole]);
+
+    const days = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert to days
+    const hours = Math.floor((timeDiff % (1000 * 3600 * 24)) / (1000 * 3600)); // Convert to hours
+    const minutes = Math.floor((timeDiff % (1000 * 3600)) / (1000 * 60)); // Convert to minutes
+
+    return `${days} days`;
+  };
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center text-white">Training Tasks</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-white">Your Training Tasks</h2>
+      
+      {message && <p className="text-red-500 text-center">{message}</p>}
 
-      {message && <p className="text-center text-red-500">{message}</p>}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="bg-white p-6 rounded shadow-md mb-6 text-gray-700">
         {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <div key={task.courseTitle} className="bg-white p-6 rounded shadow-md text-gray-700">
-              <h3 className="text-xl font-bold">{task.courseTitle}</h3>
-              <p className="mt-2">{task.courseDescription}</p>
-              <div className="mt-4">
-                {task.coursePdf && (
-                  <a 
-                  href={task.coursePdf} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-blue-500"
-                  onClick={(e) => {
-                    console.log("PDF URL:", task.coursePdf); // Log the URL to check if it's correct
-                  }}
-                >
-                  View PDF
-                </a>
-                )}
-              </div>
-              <p className="mt-2">Start Date: {task.startDate}</p>
-              <p>End Date: {task.endDate}</p>
-            </div>
-          ))
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full text-left border-collapse">
+              <thead>
+                <tr>
+                  <th className="border-b py-2 px-4">Course Name</th>
+                  <th className="border-b py-2 px-4">Course Description</th>
+                  <th className="border-b py-2 px-4">Course File</th>
+                  <th className="border-b py-2 px-4">Start Date</th>
+                  <th className="border-b py-2 px-4">End Date</th>
+                  <th className="border-b py-2 px-4">Remaining Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tasks.map((task) => (
+                  <tr key={task.courseTitle}>
+                    <td className="border-b py-2 px-4">{task.courseTitle}</td>
+                    <td className="border-b py-2 px-4">{task.courseDescription}</td>
+                    <td className="border-b py-2 px-4">
+                      {task.coursePdf && (
+                        <a
+                          href={`http://localhost:3000/${task.coursePdf}`} // Make sure the URL is correct
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500"
+                        >
+                          View PDF
+                        </a>
+                      )}
+                    </td>
+                    <td className="border-b py-2 px-4">{new Date(task.startDate).toLocaleDateString()}</td>
+                    <td className="border-b py-2 px-4">{new Date(task.endDate).toLocaleDateString()}</td>
+                    <td className="border-b py-2 px-4">{calculateRemainingTime(task.endDate)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <p>No tasks available for your role.</p>
+          <p>No tasks available.</p>
         )}
       </div>
     </div>

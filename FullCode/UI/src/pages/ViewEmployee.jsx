@@ -4,22 +4,22 @@ const ViewEmployee = () => {
   const [employees, setEmployees] = useState([]);
   const [count, setCount] = useState(0);
   const [role, setRole] = useState('');
-  const [month, setMonth] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  // Function to fetch employees
   const fetchEmployees = async () => {
     setLoading(true);
     setMessage('');
 
     try {
       const query = new URLSearchParams();
-      if (role) query.append('role', role);
-      if (month) query.append('month', month);
+      if (role) query.append('role', role); // Add role to query string if set
 
       const response = await fetch(`/api/employeesList?${query.toString()}`);
       const contentType = response.headers.get('content-type');
 
+      // Check if the response is in JSON format
       if (!contentType || !contentType.includes('application/json')) {
         console.error('Expected JSON but received:', contentType);
         throw new Error('Unexpected response format. Please check the backend.');
@@ -42,9 +42,10 @@ const ViewEmployee = () => {
     }
   };
 
+  // Fetch employees whenever role changes
   useEffect(() => {
     fetchEmployees();
-  }, [role, month]);
+  }, [role]);
 
   return (
     <div className="container mx-auto p-6">
@@ -63,13 +64,6 @@ const ViewEmployee = () => {
           <option value="uidesigner">Designer</option>
           {/* Add more roles as needed */}
         </select>
-
-        <input
-          type="month"
-          className="p-2 border rounded"
-          value={month}
-          onChange={(e) => setMonth(e.target.value)}
-        />
       </div>
 
       {/* Employee Count */}
@@ -80,7 +74,7 @@ const ViewEmployee = () => {
 
       {/* Employee Table */}
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-white">Loading...</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table-auto w-full text-left border-collapse text-white">
@@ -88,24 +82,28 @@ const ViewEmployee = () => {
               <tr>
                 <th className="border-b py-2 px-4">Employee Name</th>
                 <th className="border-b py-2 px-4">Role</th>
-                <th className="border-b py-2 px-4">Joining Date</th>
+                {/* Add more columns if needed */}
               </tr>
             </thead>
             <tbody>
-              {employees.map((employee) => {
-                const fullName = `${employee.firstname} ${employee.lastname}`;
-                const joiningDate = employee.joiningDate
-                  ? new Date(employee.joiningDate).toLocaleDateString() // Format the date for display
-                  : 'N/A';
+              {employees.length === 0 ? (
+                <tr>
+                  <td colSpan="2" className="border-b py-2 px-4 text-center">
+                    No employees found.
+                  </td>
+                </tr>
+              ) : (
+                employees.map((employee) => {
+                  const fullName = `${employee.firstname} ${employee.lastname}`;
 
-                return (
-                  <tr key={employee._id}>
-                    <td className="border-b py-2 px-4">{fullName}</td>
-                    <td className="border-b py-2 px-4">{employee.role}</td>
-                    <td className="border-b py-2 px-4">{joiningDate}</td>
-                  </tr>
-                );
-              })}
+                  return (
+                    <tr key={employee._id}>
+                      <td className="border-b py-2 px-4">{fullName}</td>
+                      <td className="border-b py-2 px-4">{employee.role}</td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>

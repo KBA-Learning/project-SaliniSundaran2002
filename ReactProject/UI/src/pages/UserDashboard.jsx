@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { logUserName } from '../utils/getUserName';
-// import { getUserInfo } from '../utils/getEmail';
+import WelcomeSection from '../component/WelcomeSection';
+import CompanyOverview from '../component/CompanyOverview';
 
 const UserDashboard = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -36,11 +37,12 @@ const UserDashboard = () => {
   Hi, {userInfo.firstname} {userInfo.lastname}
 </h2>
 
+<WelcomeSection />
 
-
-
+<CompanyOverview />
 
         </div>
+       
     );
 };
 

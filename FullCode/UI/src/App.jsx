@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import UserLayout from "./layouts/UserLayout";
+import Footer from "./component/Footer";
 import Background from "./component/Background";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -18,10 +19,12 @@ import UserViewNotification from "./pages/UserViewNotification";
 import UserSupport from "./pages/UserSupport";
 import ViewEmployee from "./pages/ViewEmployee"
 import EditProfile from "./pages/EditProfile";
+import AdminTrackProgress from "./pages/AdminTrackProgress";
+import MyProfile from "./pages/MyProfile";
 // import ViewCourse from "./pages/ViewCourse";
 
 const App = () => {
-  return (
+   return (
     <BrowserRouter>
       <Background />
       <Routes>
@@ -34,12 +37,14 @@ const App = () => {
           <Route path="admin-trainTasks" element={< AddTrainingTask />} />
           <Route path="admin-settings" element={< AddSettings />} />
           <Route path="view-employee" element={< ViewEmployee />} />
+          <Route path="track-progress" element={< AdminTrackProgress/>} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
         <Route element={<UserLayout />} >
           <Route path="/user-home" element={<UserDashboard />} />
-          <Route path="/profile" element={<EditProfile />} />
+          <Route path="/profile" element={<MyProfile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="user-onTasks" element={<UserOnboardTask />} />
           <Route path="user-trainTasks" element={<UserTrainingTask />} />
           <Route path="user-notification" element={<UserViewNotification />} />
@@ -48,6 +53,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

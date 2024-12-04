@@ -41,7 +41,7 @@ const UserViewNotification = () => {
         <div className="bg-white p-6 rounded shadow-md text-gray-700">
           {notifications.map((notification) => (
             <div key={notification.taskid} className="border-b py-4">
-              <h3 className="font-bold text-xl text-purple-700">{notification.taskname}</h3>
+              <h3 className="font-bold text-xl text-black">{notification.taskname}</h3>
               <p className="text-gray-600">{notification.Details}</p>
               <p className="text-sm text-gray-400">
                 {new Date(notification.Date).toLocaleDateString()}

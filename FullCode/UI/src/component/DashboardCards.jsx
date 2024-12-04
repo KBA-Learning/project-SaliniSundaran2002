@@ -7,12 +7,11 @@ const DashboardCards = () => {
   const [pendingTasks, setPendingTasks] = useState(0);
   const [newEmployeesThisMonth, setNewEmployeesThisMonth] = useState(0);
 
-  // Fetch data from your API endpoint
   useEffect(() => {
-    // Replace with the actual API call to your backend
+   
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/viewTotalEmployees'); // Assuming this endpoint returns the required data
+        const response = await fetch('/api/viewTotalEmployees'); 
         const data = await response.json();
 
         setTotalEmployees(data.totalEmployees);
@@ -34,7 +33,7 @@ const DashboardCards = () => {
         <h3 className="text-base sm:text-lg font-semibold">Total Employees</h3>
         <p className="text-lg sm:text-2xl font-bold">{totalEmployees}</p>
       </div>
-      <div className="card bg-white shadow-md rounded-lg p-3 sm:p-4 text-center text-black">
+      {/* <div className="card bg-white shadow-md rounded-lg p-3 sm:p-4 text-center text-black">
         <h3 className="text-base sm:text-lg font-semibold">Onboarding Completed</h3>
         <p className="text-lg sm:text-2xl font-bold">{onboardingCompleted}%</p>
       </div>
@@ -49,7 +48,7 @@ const DashboardCards = () => {
       <div className="card bg-white shadow-md rounded-lg p-3 sm:p-4 text-center sm:col-span-1 md:col-span-2 lg:col-span-1 text-black">
         <h3 className="text-base sm:text-lg font-semibold">New Employees This Month</h3>
         <p className="text-lg sm:text-2xl font-bold">{newEmployeesThisMonth}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -41,9 +41,9 @@ const UserMobileNavbar = () => {
           <li>
           <Link to="/user-trainTasks" className="hover:text-blue-300">Training Tasks</Link>
           </li>
-          <li>
+          {/* <li>
           <Link to="/user-progress" className="hover:text-blue-300">Progress</Link>
-          </li>
+          </li> */}
           <li>
           <Link to="/user-notification" className="hover:text-blue-300">Notifications</Link>
           </li>

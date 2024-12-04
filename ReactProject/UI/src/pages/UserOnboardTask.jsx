@@ -39,8 +39,8 @@ const UserOnboardTask = () => {
             <div key={task.taskTitle} className="bg-white p-6 rounded shadow-md">
               <h3 className="text-xl font-bold">{task.taskTitle}</h3>
               <p>{task.taskDescription}</p>
-              <p>Start Date: {task.startDate}</p>
-              <p>End Date: {task.endDate}</p>
+              <p>Start Date: {new Date(task.startDate).toLocaleDateString()}</p>
+              <p>End Date: {new Date(task.endDate).toLocaleDateString()}</p>
               {task.taskPdf && (
                 <a
                 href={`http://localhost:3000/${task.taskPdf}`}

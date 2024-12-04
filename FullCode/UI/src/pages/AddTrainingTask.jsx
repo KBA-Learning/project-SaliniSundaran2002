@@ -64,7 +64,7 @@ const AddTrainingTask = () => {
         alert(
           editingCourseTitle ? 'Task successfully updated!' : 'Task successfully added!'
         );
-        fetchTasks(); 
+        fetchTasks();
         setCourseTitle('');
         setCourseDescription('');
         setAssignedRole('');
@@ -120,10 +120,10 @@ const AddTrainingTask = () => {
       <h2 className="text-2xl font-bold mb-4 text-center text-white">
         {editingCourseTitle ? 'Edit Training Task' : 'Add New Training Task'}
       </h2>
-      <div className="bg-white p-6 rounded shadow-md mb-6 text-gray-700">
-        <form className="space-y-4" onSubmit={handleSubmit}>
+      <div className="bg-white p-6 rounded-lg shadow-lg mb-6 text-gray-700">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="courseTitle" className="block text-sm font-medium">
+            <label htmlFor="courseTitle" className="block text-sm font-medium text-gray-600">
               Task Name:
             </label>
             <input
@@ -131,32 +131,32 @@ const AddTrainingTask = () => {
               id="courseTitle"
               value={courseTitle}
               onChange={(e) => setCourseTitle(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="courseDescription" className="block text-sm font-medium">
+            <label htmlFor="courseDescription" className="block text-sm font-medium text-gray-600">
               Course Description:
             </label>
             <textarea
               id="courseDescription"
               value={courseDescription}
               onChange={(e) => setCourseDescription(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               rows="4"
               required
             />
           </div>
           <div>
-            <label htmlFor="assignedRole" className="block text-sm font-medium">
+            <label htmlFor="assignedRole" className="block text-sm font-medium text-gray-600">
               Assigned Role:
             </label>
             <select
               id="assignedRole"
               value={assignedRole}
               onChange={(e) => setAssignedRole(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
               <option value="" disabled>Select a role</option>
@@ -165,7 +165,7 @@ const AddTrainingTask = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="duration" className="block text-sm font-medium">
+            <label htmlFor="duration" className="block text-sm font-medium text-gray-600">
               Duration:
             </label>
             <input
@@ -173,12 +173,12 @@ const AddTrainingTask = () => {
               id="duration"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="startDate" className="block text-sm font-medium">
+            <label htmlFor="startDate" className="block text-sm font-medium text-gray-600">
               Start Date:
             </label>
             <input
@@ -186,12 +186,12 @@ const AddTrainingTask = () => {
               id="startDate"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="endDate" className="block text-sm font-medium">
+            <label htmlFor="endDate" className="block text-sm font-medium text-gray-600">
               End Date:
             </label>
             <input
@@ -199,20 +199,20 @@ const AddTrainingTask = () => {
               id="endDate"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="coursePdf" className="block text-sm font-medium">
+            <label htmlFor="coursePdf" className="block text-sm font-medium text-gray-600">
               Course PDF:
             </label>
             <input
               type="file"
               id="coursePdf"
               onChange={handleFileChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               accept="application/pdf"
             />
           </div>
@@ -220,68 +220,55 @@ const AddTrainingTask = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition duration-200"
             >
               {editingCourseTitle ? 'Update Task' : 'Add Task'}
             </button>
           </div>
         </form>
+      </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-center text-white">Task List</h2>
-        <div className="bg-white p-6 rounded shadow-md text-gray-700 overflow-x-auto">
-          {tasks.length > 0 ? (
-            <table className="table-auto w-full text-left border-collapse">
-              <thead>
-                <tr>
-                  <th className="border-b py-2 px-4">Course Name</th>
-                  <th className="border-b py-2 px-4">Course Description</th>
-                  <th className="border-b py-2 px-4">Course File</th>
-                  <th className="border-b py-2 px-4">Start Date</th>
-                  <th className="border-b py-2 px-4">End Date</th>
-                  <th className="border-b py-2 px-4">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tasks.map((task) => (
-                  <tr key={task.courseTitle}>
-                    <td className="border-b py-2 px-4">{task.courseTitle}</td>
-                    <td className="border-b py-2 px-4">{task.courseDescription}</td>
-                    <td className="border-b py-2 px-4">
-                      {task.coursePdf && (
-                        <a
-                          href={task.coursePdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-500"
-                        >
-                          View PDF
-                        </a>
-                      )}
-                    </td>
-                    <td className="border-b py-2 px-4">{task.startDate}</td>
-                    <td className="border-b py-2 px-4">{task.endDate}</td>
-                    <td className="border-b py-2 px-4">
-                      <button
-                        onClick={() => handleEdit(task)}
-                        className="bg-yellow-500 text-white py-1 px-3 rounded mr-2"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(task.courseTitle)}
-                        className="bg-red-500 text-white py-1 px-3 rounded"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No tasks available.</p>
-          )}
-        </div>
+      <h2 className="text-2xl font-bold mt-10 mb-4 text-center text-white">Task List</h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <div key={task.courseTitle} className="bg-white p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-gray-700">{task.courseTitle}</h3>
+              <p className="text-sm text-gray-600 mt-2">{task.courseDescription}</p>
+              <p className="text-sm text-gray-600 mt-2">Role: {task.assignedRole}</p>
+              <p className="text-sm text-gray-600 mt-2">Duration: {task.duration}</p>
+              <p className="text-sm text-gray-600 mt-2">Start Date: {new Date(task.startDate).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-600 mt-2">End Date: {new Date(task.endDate).toLocaleDateString()}</p>
+              {task.coursePdf && (
+                <a
+                  href={`http://localhost:3000/${task.coursePdf}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline mt-4 block"
+                >
+                  View PDF
+                </a>
+              )}
+              <div className="mt-4 flex justify-between">
+                <button
+                  onClick={() => handleEdit(task)}
+                  className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(task.courseTitle)}
+                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No tasks available.</p>
+        )}
       </div>
     </div>
   );

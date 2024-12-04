@@ -1,42 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { logUserName } from '../utils/getUserName';
+import WelcomeSection from '../component/WelcomeSection';
+import CompanyOverview from '../component/CompanyOverview';
 
 const UserDashboard = () => {
-    const [username, setUsername] = useState(null); // State to store username (null for initial loading state)
-    const [error, setError] = useState(null);      // State to store errors
+    const [userInfo, setUserInfo] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchUsername = async () => {
+        const fetchUserInfo = async () => {
             try {
-                console.log("Fetching username...");
                 const user = await logUserName();
-                if (user) {
-                    setUsername(user); // Set username if fetched successfully
-                } else {
-                    setUsername('Guest'); // Fallback to 'Guest' if username is null
-                }
-                console.log("Fetched and set username:", user);
+                console.log("userdetails", user);
+
+                setUserInfo(user);
             } catch (err) {
-                console.error('Error fetching username:', err);
-                setError('Failed to fetch username.');
+                console.error('Error fetching user info:', err);
+                setError('Failed to fetch user info.');
             }
         };
 
-        fetchUsername(); // Call fetch function when component mounts
+        fetchUserInfo();
     }, []);
 
     if (error) {
-        return <div>Error: {error}</div>; // Display error message if fetching fails
+        return <div>Error: {error}</div>;
     }
 
-    if (username === null) {
-        return <div>Loading...</div>; // Display loading message while fetching data
+    if (!userInfo) {
+        return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h2>Hi, {username}</h2> {/* Display the fetched username */}
+<h2 class="text-4xl font-semibold text-white text-center p-6 shadow-xl rounded-lg bg-gradient-to-r from-black via-blue-600 to-black transform scale-100 transition-all duration-5000 ease-out animate-zoom-out">
+  Hi, {userInfo.firstname} {userInfo.lastname}
+</h2>
+
+<WelcomeSection />
+
+<CompanyOverview />
+
         </div>
+       
     );
 };
 

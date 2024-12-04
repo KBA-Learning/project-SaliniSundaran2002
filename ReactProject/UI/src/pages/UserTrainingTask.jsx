@@ -83,8 +83,8 @@ const UserTrainingTask = () => {
                         </a>
                       )}
                     </td>
-                    <td className="border-b py-2 px-4">{task.startDate}</td>
-                    <td className="border-b py-2 px-4">{task.endDate}</td>
+                    <td className="border-b py-2 px-4">{new Date(task.startDate).toLocaleDateString()}</td>
+                    <td className="border-b py-2 px-4">{new Date(task.endDate).toLocaleDateString()}</td>
                     <td className="border-b py-2 px-4">{calculateRemainingTime(task.endDate)}</td>
                   </tr>
                 ))}

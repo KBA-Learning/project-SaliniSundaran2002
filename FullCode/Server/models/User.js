@@ -7,7 +7,11 @@ const userSchema = Schema({
     email: { type: String, unique: true },
     username: { type: String},
     password: String,
-    role: String
+    role: String,
+    trainingTasks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TrainingTask', 
+          }],
 
 })
 module.exports = mongoose.model('userdetails', userSchema)

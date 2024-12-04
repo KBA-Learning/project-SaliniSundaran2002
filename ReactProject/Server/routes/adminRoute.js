@@ -468,7 +468,51 @@ adminRoute.delete('/deleteTrainingTask/:courseTitle', async (req, res) => {
       res.status(500).json({ message: 'Error occurred while deleting task.' });
     }
   });
+
+ adminRoute.get('/getTrainingTasksUser/:userEmail', async (req, res) => {
+    const { userEmail } = req.params;
+    console.log("userEmial",userEmail);
+    
   
+    try {
+      const User = await user.findOne({email:userEmail}).populate('trainingTasks', null, null, { strictPopulate: false }); 
+      if (!User) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json({ tasks: User.trainingTasks });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error fetching training tasks' });
+    }
+  });
+
+  // get Training task by user role
+
+  adminRoute.get('/getUserTraining',authenticate, async (req, res) => {
+    try {
+        
+        const userRole = req.role; 
+        // console.log("userRole",userRole);
+        
+
+        if (!userRole) {
+            return res.status(401).json({ message: 'User role not found' });
+        }
+
+        // Find tasks filtered by the user role (this assumes tasks have an 'assignedRole' field)
+        const tasks = await Training.find({ assignedRole: userRole });
+
+        if (!tasks.length) {
+            return res.status(404).json({ message: 'No tasks found for your role.' });
+        }
+
+        res.status(200).json({ tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).json({ message: 'Error occurred while fetching tasks.' });
+    }
+});
+
 
 //   add Contact us
 
@@ -599,23 +643,24 @@ adminRoute.get('/employeesList', async (req, res) => {
 
 adminRoute.get('/userName', authenticate, async (req, res) => {
   try {
-    const userId = req.userId; 
+    const userId = req.userId;
     if (!userId) {
       return res.status(400).json({ message: 'User ID not found in request.' });
     }
 
-    const User = await user.findById(userId); 
+    const User = await user.findById(userId);
     if (!User) {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-
-    res.status(200).json({ username: User.firstname + " " + User.lastname });
+    res.status(200).json({ firstname: User.firstname, lastname: User.lastname });
   } catch (error) {
     console.error('Error fetching username:', error);
     res.status(500).json({ message: 'Internal server error.' });
   }
 });
+
+
 
 
 // Route to get user info (including email and role)
@@ -686,35 +731,29 @@ adminRoute.get('/employeeProgress', async (req, res) => {
 
 adminRoute.put('/updateUser/:userEmail',  async (req, res) => {
   try {
-    const userEmail = req.params.userEmail; // Email passed as a route parameter
+    const userEmail = req.params.userEmail; 
     const { address, phoneNumber } = req.body;
+    const getDetails = await user.findOne({ email: userEmail }, 'firstname lastname email role');
 
-    // Check if a file was uploaded and set the profilePic path
-    // const profilePic = req.file ? req.file.path : null;
-
-    // Fetch the user details matching the provided email
-    const getDetails = await user.findOne({ email: userEmail }, 'firstname lastname email');
-
-    // Validate if details are fetched
     if (!getDetails) {
       return res.status(404).json({ message: `No user found with email: ${userEmail}` });
     }
 
-    const { firstname, lastname, email } = getDetails;
+    const { firstname, lastname, email , role} = getDetails;
 
-    // Update or create an entry in UpdatedProfile for the matched user
     const updatedData = await UpdatedProfile.findOneAndUpdate(
-      { email }, // Match by email
+      { email },
       {
         firstname,
         lastname,
         email,
         address,
         phone: phoneNumber,
-        // profilePic, // Use the uploaded file path
+        role,
+        // profilePic,
         updatedAt: new Date(),
       },
-      { new: true, upsert: true } // Return updated document and create if not found
+      { new: true, upsert: true } 
     );
 
     res.status(200).json({ message: 'Profile updated successfully' , updatedData});
@@ -772,6 +811,49 @@ adminRoute.get('/userDetails/:email', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+adminRoute.get('/myProfile/:userEmail', async (req, res) => {
+  try {
+    // Extracting userEmail from route parameters
+    const userEmail = req.params.userEmail;
+    console.log("request body:",userEmail);
+    
+
+    // Fetching the UpdatedProfile document with the given userEmail
+    const checkProfile = await UpdatedProfile.findOne({email: userEmail });
+    console.log("checkprofile",checkProfile);
+    
+
+    if (checkProfile) {
+      // Verifying if the logged-in email matches the profile's email
+      if (checkProfile.email === userEmail) {
+        return res.status(200).json(checkProfile); // Sending profile details
+      } else {
+        return res.status(403).json({ message: 'Email mismatch. Access denied.' });
+      }
+    } else {
+      return res.status(404).json({ message: 'Profile not found.' });
+    }
+  } catch (error) {
+    console.error(error); // Logging any errors
+    res.status(500).json({ message: 'An error occurred while fetching the profile.' });
+  }
+});
+
+
+// view userDETAILS
+
+adminRoute.get('/getViewUserdetails',async (req,res)=>{
+  try{
+
+  } catch(error){
+    res.status(500).json({message:"Internal server error..."})
+  }
+})
+
+
 
 
 

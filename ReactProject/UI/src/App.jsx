@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import UserLayout from "./layouts/UserLayout";
+import Footer from "./component/Footer";
 import Background from "./component/Background";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -18,6 +19,7 @@ import UserViewNotification from "./pages/UserViewNotification";
 import UserSupport from "./pages/UserSupport";
 import ViewEmployee from "./pages/ViewEmployee"
 import EditProfile from "./pages/EditProfile";
+import AdminTrackProgress from "./pages/AdminTrackProgress";
 // import ViewCourse from "./pages/ViewCourse";
 
 const App = () => {
@@ -34,6 +36,7 @@ const App = () => {
           <Route path="admin-trainTasks" element={< AddTrainingTask />} />
           <Route path="admin-settings" element={< AddSettings />} />
           <Route path="view-employee" element={< ViewEmployee />} />
+          <Route path="track-progress" element={< AdminTrackProgress/>} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
@@ -48,6 +51,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
